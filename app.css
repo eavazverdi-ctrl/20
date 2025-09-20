@@ -13,8 +13,8 @@ body{
   background:#0B0B10; color:#fff; overflow-x:hidden;
 }
 
-.bg-wall{ position:fixed; inset:0; background:url('./assets/bg.jpg') center/cover no-repeat; filter:brightness(.9) saturate(1.1); transform:translateZ(0); }
-.bg-dim{ position:fixed; inset:0; background:rgba(0,0,0,.35); backdrop-filter:blur(6px); }
+.bg-wall{ position:fixed; inset:0; background:url('./assets/bg.jpg') center/cover no-repeat; }
+.bg-dim{ display:none; }
 
 .grid{
   position:relative; display:grid; grid-template-columns: repeat(2, calc(50% - 7.5px));
@@ -28,7 +28,7 @@ body{
   -webkit-backdrop-filter: blur(var(--card-blur)) saturate(160%);
   overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,.25);
 }
-.card-head{ text-align:center; font-weight:700; padding:6px 10px; letter-spacing:.3px; }
+.card-head{ text-align:center; font-weight:700; padding:6px 10px; letter-spacing:.3px; font-size:0.8rem; }
 .card-head.clickable{ cursor:pointer; user-select:none; }
 .card-head.green{ background:#c6f6d5; color:#0f5132; }
 .card-head.pink{ background:#ffd6de; color:#842029; }
@@ -77,7 +77,7 @@ hr{ border:none; border-top:1px solid rgba(255,255,255,.14); margin:8px 0; }
   background:#2C2C2E; color:#fff; outline:none;
 }
 
-.send-btn{ width:100%; border-radius:12px; border:1px solid rgba(0,0,0,.08); padding:8px 10px; font-weight:800; cursor:pointer; }
+.send-btn{ width:100%; border-radius:12px; border:1px solid rgba(0,0,0,.08); padding:8px 10px; font-weight:800; cursor:pointer; font-size:0.8rem; }
 .send-btn.buy{ background:#c6f6d5; color:#0f5132; }
 .send-btn.sell{ background:#ffd6de; color:#842029; }
 
