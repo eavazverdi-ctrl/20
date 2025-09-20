@@ -1,5 +1,5 @@
 
-:root{ --field-h:34px; --field-radius:16px; --field-font:15px; 
+:root{ --field-h:32px; --field-radius:14px; --field-font:15px; 
   --card-alpha: 0.12;
   --card-border-alpha: 0.12;
   --card-blur: 14px;
@@ -63,8 +63,8 @@ body{ overflow:hidden;
   padding:0 12px;
   border-radius:var(--field-radius);
   border:1px solid rgba(255,255,255,.2);
-  font-size:var(--field-font);
-  font-weight:500;
+  font-size:14px;
+  font-weight:800;
   text-align:center;
   box-sizing:border-box;
 }
