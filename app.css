@@ -1,5 +1,5 @@
 
-:root{
+:root{ --field-h:36px; --field-radius:18px; --field-font:16px; 
   --card-alpha: 0.12;
   --card-border-alpha: 0.12;
   --card-blur: 14px;
@@ -35,15 +35,39 @@ body{ overflow:hidden;
 
 .card-body{ overflow:hidden;  padding:8px 8px 10px; }
 .row{ margin:4px 0; }
+
 .row input{
-  width:100%; border-radius:12px; padding:0 10px;
+  width:100%;
+  height:var(--field-h);
+  line-height:var(--field-h);
+  padding:0 12px;
+  border-radius:var(--field-radius);
   border:1px solid rgba(255,255,255,.22);
-  background:rgba(255,255,255,.82); color:#000; outline:none;
-  font-size:15px; height:34px; line-height:34px;
+  background:rgba(255,255,255,.92);
+  color:#000;
+  outline:none;
+  font-size:var(--field-font);
+  font-weight:400;
+  -webkit-appearance:none;
+  appearance:none;
+  box-sizing:border-box;
 }
 .row input:focus{ border-color:#6ea8fe; outline:2px solid rgba(13,110,253,.2); }
 
-.badge{ font-weight:400;  display:inline-block; width:auto; min-width:40px; text-align:center; padding:0 10px; border-radius:12px;  font-size:15px; border:1px solid rgba(255,255,255,.2); }
+
+.badge{
+  display:block;
+  width:100%;
+  height:var(--field-h);
+  line-height:var(--field-h);
+  padding:0 12px;
+  border-radius:var(--field-radius);
+  border:1px solid rgba(255,255,255,.2);
+  font-size:var(--field-font);
+  font-weight:400;
+  text-align:center;
+  box-sizing:border-box;
+}
 .badge.full{ display:block; }
 .green-soft{ background:#d5f5e3; color:#0f5132; }
 .red-soft{ background:#ffd7d7; color:#842029; }
@@ -77,7 +101,19 @@ hr{ border:none; border-top:1px solid rgba(255,255,255,.14); margin:8px 0; }
   background:#2C2C2E; color:#fff; outline:none;
 }
 
-.send-btn{ width:100%; border-radius:12px; border:1px solid rgba(0,0,0,.08); padding:0 10px; font-weight:800; cursor:pointer; font-size:15px; }
+
+.send-btn{
+  width:100%;
+  height:var(--field-h);
+  line-height:var(--field-h);
+  border-radius:var(--field-radius);
+  border:1px solid rgba(0,0,0,.08);
+  padding:0 12px;
+  font-weight:800;
+  font-size:16px;
+  cursor:pointer;
+  box-sizing:border-box;
+}
 .send-btn.buy{ background:#c6f6d5; color:#0f5132; }
 .send-btn.sell{ background:#ffd6de; color:#842029; }
 
