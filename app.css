@@ -16,7 +16,7 @@ body{ overflow:hidden;
 .bg-wall{ position:fixed; inset:0; background:url('./assets/bg.jpg') center/cover no-repeat; }
 .bg-dim{ display:none; }
 
-.grid{ height:100dvh; overflow:auto; -webkit-overflow-scrolling:touch; padding-bottom:80px;
+.grid{ align-items:start; align-content:start;  height:100dvh; overflow:auto; -webkit-overflow-scrolling:touch; padding-bottom:80px;
   position:relative; display:grid; grid-template-columns: repeat(2, calc(50% - 7.5px));
   gap:5px; padding:12px; max-width:900px; margin:0 auto;
 }
