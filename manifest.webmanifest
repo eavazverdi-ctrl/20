@@ -1,0 +1,22 @@
+{
+  "name": "FX Levels",
+  "short_name": "FX Levels",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0B0B10",
+  "theme_color": "#0B0B10",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "dir": "rtl",
+  "lang": "fa"
+}
