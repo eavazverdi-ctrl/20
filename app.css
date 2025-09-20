@@ -77,7 +77,7 @@ hr{ border:none; border-top:1px solid rgba(255,255,255,.14); margin:8px 0; }
   background:#2C2C2E; color:#fff; outline:none;
 }
 
-.send-btn{ width:100%; border-radius:12px; border:1px solid rgba(0,0,0,.08); padding:8px 10px; font-weight:800; cursor:pointer; font-size:0.8rem; }
+.send-btn{ width:100%; border-radius:12px; border:1px solid rgba(0,0,0,.08); padding:8px 10px; font-weight:800; cursor:pointer; font-size:14px; }
 .send-btn.buy{ background:#c6f6d5; color:#0f5132; }
 .send-btn.sell{ background:#ffd6de; color:#842029; }
 

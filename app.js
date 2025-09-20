@@ -187,7 +187,7 @@ document.getElementById('sellHead')?.addEventListener('click', ()=>{
 
   confirmBtn?.addEventListener('click', async ()=>{
     const text=buildMessage(currentSide||'BUY');
-    try{ await sendDirect(text); alert('ارسال شد ✅'); closeSend(); }
+    try{ await sendDirect(text); closeSend(); }
     catch(e){ window.open('https://t.me/share/url?text='+encodeURIComponent(text),'_blank'); closeSend(); }
   });
 })();
