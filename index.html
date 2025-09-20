@@ -26,6 +26,7 @@
         <div class="row"><div class="badge green-soft full" id="buyP1">—</div></div>
         <div class="row"><div class="badge green-soft full" id="buyP2">—</div></div>
         <div class="row"><div class="badge yellow full" id="buyStop">—</div></div>
+        <div class="row"><button class="send-btn buy" id="sendBuy">ارسال خرید به تلگرام</button></div>
       </div>
     </section>
 
@@ -39,12 +40,13 @@
         <div class="row"><div class="badge yellow full" id="sellStop">—</div></div>
         <div class="row"><div class="badge red-soft full" id="sellP2">—</div></div>
         <div class="row"><div class="badge red-soft full" id="sellP1">—</div></div>
+        <div class="row"><button class="send-btn sell" id="sendSell">ارسال فروش به تلگرام</button></div>
       </div>
     </section>
   </main>
 
-  <!-- Glass settings -->
-  <button class="fab" id="glassFab" aria-label="تنظیم گلس">⚙️</button>
+  <!-- Glass & Settings -->
+  <button class="fab" id="glassFab" aria-label="تنظیمات">⚙️</button>
   <section class="sheet" id="glassSheet" aria-hidden="true">
     <div class="sheet-handle"></div>
     <div class="sheet-body">
@@ -68,43 +70,35 @@
         <button data-preset="reset">ریست</button>
       </div>
       <div class="hint">تغییرات ذخیره می‌شوند و در اجراهای بعدی هم اعمال می‌گردند.</div>
-    </div>
-  </section>
 
-  <!-- Share FAB (opens sheet) -->
-  <button class="fab share" id="shareFab" aria-label="ارسال به تلگرام">📤</button>
-
-  <!-- Share Bottom Sheet (Text only) -->
-  <section class="sheet" id="shareSheet" aria-hidden="true">
-    <div class="sheet-handle"></div>
-    <div class="sheet-body">
-      <div class="sheet-title">ارسال ترید به تلگرام</div>
-      <div class="sheet-row" style="grid-template-columns: 1fr;">
-        <label>پیش‌نمایش پیام:</label>
-        <div id="sharePreview" class="preview"></div>
-      </div>
-      <div class="preset-row">
-        <button id="btnTgBuy">ارسال خرید (تلگرام)</button>
-        <button id="btnTgSell">ارسال فروش (تلگرام)</button>
-      </div>
       <hr style="opacity:.12;border:none;border-top:1px solid rgba(255,255,255,.18);margin:10px 0;">
-      <div class="sheet-title" style="margin-top:0">ارسال مستقیم با ربات (اختیاری)</div>
+      <div class="sheet-title" style="margin-top:0">تنظیمات تلگرام (ارسال مستقیم با ربات)</div>
       <div class="sheet-row" style="grid-template-columns: 160px 1fr;">
         <label>Relay URL</label>
-        <input id="relayUrlInput" placeholder="مثال: https://your-worker.workers.dev/send">
+        <input id="relayUrlInput" placeholder="https://your-worker.workers.dev">
       </div>
       <div class="sheet-row" style="grid-template-columns: 160px 1fr;">
         <label>Chat ID</label>
-        <input id="chatIdInput" placeholder="-1001234567890">
+        <input id="chatIdInput" placeholder="-1001234567890 یا @channel">
       </div>
       <div class="preset-row">
         <button id="saveRelay">ذخیره</button>
         <button id="testRelay">تست اتصال</button>
-        <button id="btnDirectBuy">ارسال مستقیم خرید</button>
-        <button id="btnDirectSell">ارسال مستقیم فروش</button>
-        <button id="openGuide">راهنما</button>
       </div>
-      <div class="hint">فقط متن ارسال می‌شود (بدون تصویر). برای خرید آیکن 🟢 و برای فروش 🔴 استفاده می‌شود.</div>
+    </div>
+  </section>
+
+  <!-- Minimal Send Sheet -->
+  <section class="sheet" id="sendSheet" aria-hidden="true">
+    <div class="sheet-handle"></div>
+    <div class="sheet-body">
+      <div class="sheet-title">پیش‌نمایش پیام:</div>
+      <div id="sendPreview" class="preview"></div>
+      <div class="preset-row">
+        <button id="confirmSend">ارسال</button>
+        <button id="cancelSend">انصراف</button>
+      </div>
+      <div class="hint">ارسال فقط همین پیام را انجام می‌دهد.</div>
     </div>
   </section>
 
@@ -124,43 +118,5 @@
       window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js'));
     }
   </script>
-
-  <!-- Guide Bottom Sheet -->
-  <section class="sheet" id="guideSheet" aria-hidden="true">
-    <div class="sheet-handle"></div>
-    <div class="sheet-body">
-      <div class="sheet-title">راهنمای سریع ارسال مستقیم با ربات</div>
-
-      <ol style="line-height:1.7">
-        <li>در تلگرام با <b>@BotFather</b> یک ربات بساز و <b>توکن</b> بگیر.</li>
-        <li>ربات را به کانال اضافه کن و <b>ادمین</b>ش کن.</li>
-        <li>Chat ID کانال را پیدا کن (معمولاً با <code>-100</code> شروع می‌شود). می‌توانی از <b>@getidsbot</b> کمک بگیری.</li>
-        <li>به Cloudflare برو → <b>Workers &amp; Pages</b> → Create → Worker جدید بساز.</li>
-        <li>کد زیر را در Worker جایگذاری کن و <b>Deploy</b> بزن:</li>
-      </ol>
-
-      <div style="background:#1f1f1f;border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:10px;white-space:pre-wrap" id="workerCodeBox"></div>
-      <div class="preset-row" style="margin-top:8px;">
-        <button id="copyWorker">کپی کد Worker</button>
-      </div>
-
-      <p class="hint">در تنظیمات Worker → <b>Variables</b> یک Secret با نام <code>TG_BOT_TOKEN</code> بساز و مقدارش را توکن ربات قرار بده.</p>
-
-      <hr style="opacity:.12;border:none;border-top:1px solid rgba(255,255,255,.18);margin:10px 0;">
-
-      <div class="sheet-row" style="grid-template-columns: 180px 1fr;">
-        <label>آدرس Worker نهایی</label>
-        <input id="guideRelayUrl" placeholder="مثال: https://your-worker.workers.dev/send">
-      </div>
-      <div class="sheet-row" style="grid-template-columns: 180px 1fr;">
-        <label>Chat ID کانال</label>
-        <input id="guideChatId" placeholder="-100xxxxxxxxxx">
-      </div>
-      <div class="preset-row">
-        <button id="guideApply">ثبت در تنظیمات</button>
-      </div>
-    </div>
-  </section>
-
 </body>
 </html>
