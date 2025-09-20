@@ -214,3 +214,69 @@ document.getElementById('sellHead')?.addEventListener('click', ()=>{
     }).observe(el,{childList:true});
   });
 })();
+
+
+// ===== v31: Direct Telegram bot via Relay (Cloudflare Worker) =====
+(function(){
+  const RELAY_KEY = 'tgRelayUrl';
+  const CHAT_KEY  = 'tgChatId';
+
+  const relayInput = document.getElementById('relayUrlInput');
+  const chatInput  = document.getElementById('chatIdInput');
+  const btnSave    = document.getElementById('saveRelay');
+  const btnTest    = document.getElementById('testRelay');
+  const btnDBuy    = document.getElementById('btnDirectBuy');
+  const btnDSell   = document.getElementById('btnDirectSell');
+
+  function getRelay(){ try{return localStorage.getItem(RELAY_KEY)||'';}catch(e){return '';} }
+  function getChat(){ try{return localStorage.getItem(CHAT_KEY)||'';}catch(e){return '';} }
+  function setRelay(v){ try{localStorage.setItem(RELAY_KEY, v||'');}catch(e){} }
+  function setChat(v){ try{localStorage.setItem(CHAT_KEY,  v||'');}catch(e){} }
+
+  if (relayInput) relayInput.value = getRelay();
+  if (chatInput)  chatInput.value  = getChat();
+
+  btnSave?.addEventListener('click', ()=>{
+    setRelay(relayInput.value.trim());
+    setChat(chatInput.value.trim());
+    alert('ذخیره شد.');
+  });
+
+  async function sendDirect(text){
+    const relay = (relayInput?.value||'').trim() || getRelay();
+    const chat  = (chatInput?.value||'').trim()  || getChat();
+    if (!relay || !chat){ alert('Relay URL و Chat ID را وارد و ذخیره کنید.'); return; }
+    try{
+      const res = await fetch(relay, {
+        method: 'POST',
+        headers: {'content-type':'application/json'},
+        body: JSON.stringify({ chat_id: chat, text, parse_mode: 'HTML', disable_web_page_preview: true })
+      });
+      const data = await res.json().catch(()=>({}));
+      if (res.ok && data && (data.ok || data.result)){
+        alert('ارسال شد ✅');
+      } else {
+        alert('ارسال ناموفق ❌\\n' + (JSON.stringify(data)||''));
+      }
+    }catch(e){
+      alert('خطا در اتصال: ' + e);
+    }
+  }
+
+  btnTest?.addEventListener('click', ()=> sendDirect('Test from FX Levels ✅'));
+  btnDBuy?.addEventListener('click', ()=>{
+    const text = (function(){
+      const icon='🟢'; const b=document.getElementById('sharePreview').textContent.split('\\n\\n')[0] || '';
+      return b.startsWith('🟢')? b : '🟢 ' + b;
+    })();
+    sendDirect(text);
+  });
+  btnDSell?.addEventListener('click', ()=>{
+    const text = (function(){
+      const s = document.getElementById('sharePreview').textContent.split('\\n\\n')[1] || '';
+      return s.startsWith('🔴')? s : '🔴 ' + s;
+    })();
+    sendDirect(text);
+  });
+})();
+

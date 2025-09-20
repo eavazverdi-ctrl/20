@@ -84,8 +84,24 @@
         <div id="sharePreview" class="preview"></div>
       </div>
       <div class="preset-row">
-        <button id="btnTgBuy">ارسال خرید</button>
-        <button id="btnTgSell">ارسال فروش</button>
+        <button id="btnTgBuy">ارسال خرید (تلگرام)</button>
+        <button id="btnTgSell">ارسال فروش (تلگرام)</button>
+      </div>
+      <hr style="opacity:.12;border:none;border-top:1px solid rgba(255,255,255,.18);margin:10px 0;">
+      <div class="sheet-title" style="margin-top:0">ارسال مستقیم با ربات (اختیاری)</div>
+      <div class="sheet-row" style="grid-template-columns: 160px 1fr;">
+        <label>Relay URL</label>
+        <input id="relayUrlInput" placeholder="مثال: https://your-worker.workers.dev/send">
+      </div>
+      <div class="sheet-row" style="grid-template-columns: 160px 1fr;">
+        <label>Chat ID</label>
+        <input id="chatIdInput" placeholder="-1001234567890">
+      </div>
+      <div class="preset-row">
+        <button id="saveRelay">ذخیره</button>
+        <button id="testRelay">تست اتصال</button>
+        <button id="btnDirectBuy">ارسال مستقیم خرید</button>
+        <button id="btnDirectSell">ارسال مستقیم فروش</button>
       </div>
       <div class="hint">فقط متن ارسال می‌شود (بدون تصویر). برای خرید آیکن 🟢 و برای فروش 🔴 استفاده می‌شود.</div>
     </div>

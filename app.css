@@ -108,3 +108,9 @@ hr{ border:none; border-top:1px solid rgba(255,255,255,.14); margin:8px 0; }
 .auth-card input{ width:100%; border-radius:12px; padding:10px 12px; border:1px solid rgba(255,255,255,.22); background:#fff; color:#000; margin-top:8px; }
 .auth-card button{ margin-top:10px; width:100%; padding:10px 12px; border-radius:12px; background:#2c7be5; border:none; color:#fff; font-weight:700; }
 .auth-error{ margin-top:8px; color:#ff8a8a; text-align:center; }
+
+.sheet-row input:not([type=range]){
+  width:100%; border-radius:12px; padding:10px 12px;
+  border:1px solid rgba(255,255,255,.22);
+  background:#2C2C2E; color:#fff; outline:none;
+}
