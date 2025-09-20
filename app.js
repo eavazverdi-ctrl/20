@@ -280,3 +280,48 @@ document.getElementById('sellHead')?.addEventListener('click', ()=>{
   });
 })();
 
+
+
+// ===== v32: Guided overlay for direct bot setup =====
+(function(){
+  const guideSheet = document.getElementById('guideSheet');
+  const openGuide  = document.getElementById('openGuide');
+  const box        = document.getElementById('workerCodeBox');
+  const copyBtn    = document.getElementById('copyWorker');
+  const guideUrl   = document.getElementById('guideRelayUrl');
+  const guideChat  = document.getElementById('guideChatId');
+  const guideApply = document.getElementById('guideApply');
+
+  function openSheet(open){
+    guideSheet.classList.toggle('open', open ?? !guideSheet.classList.contains('open'));
+    guideSheet.setAttribute('aria-hidden', guideSheet.classList.contains('open')?'false':'true');
+  }
+
+  openGuide?.addEventListener('click', ()=>{
+    openSheet(true);
+    // Load worker code lazily
+    if (box && !box.textContent.trim()){
+      fetch('./cloudflare_worker_tg_relay.js').then(r=>r.text()).then(t=> box.textContent = t);
+    }
+  });
+  guideSheet?.addEventListener('click', (e)=>{ if(e.target===guideSheet) openSheet(false); });
+
+  copyBtn?.addEventListener('click', async ()=>{
+    try{
+      await navigator.clipboard.writeText(box.textContent || '');
+      alert('کپی شد ✅');
+    }catch(e){ alert('کپی نشد.'); }
+  });
+
+  guideApply?.addEventListener('click', ()=>{
+    const u = guideUrl.value.trim();
+    const c = guideChat.value.trim();
+    const relayInput = document.getElementById('relayUrlInput');
+    const chatInput  = document.getElementById('chatIdInput');
+    if (u) relayInput.value = u;
+    if (c) chatInput.value  = c;
+    document.getElementById('saveRelay')?.click();
+    alert('در تنظیمات ذخیره شد.');
+  });
+})();
+

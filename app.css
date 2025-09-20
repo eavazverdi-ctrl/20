@@ -114,3 +114,6 @@ hr{ border:none; border-top:1px solid rgba(255,255,255,.14); margin:8px 0; }
   border:1px solid rgba(255,255,255,.22);
   background:#2C2C2E; color:#fff; outline:none;
 }
+
+.sheet-body ol{ padding-inline-start: 20px; margin: 6px 0 10px; }
+.sheet-body code{ background:rgba(255,255,255,.08); padding:1px 4px; border-radius:6px; }

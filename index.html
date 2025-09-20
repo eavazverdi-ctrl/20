@@ -102,6 +102,7 @@
         <button id="testRelay">تست اتصال</button>
         <button id="btnDirectBuy">ارسال مستقیم خرید</button>
         <button id="btnDirectSell">ارسال مستقیم فروش</button>
+        <button id="openGuide">راهنما</button>
       </div>
       <div class="hint">فقط متن ارسال می‌شود (بدون تصویر). برای خرید آیکن 🟢 و برای فروش 🔴 استفاده می‌شود.</div>
     </div>
@@ -123,5 +124,43 @@
       window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js'));
     }
   </script>
+
+  <!-- Guide Bottom Sheet -->
+  <section class="sheet" id="guideSheet" aria-hidden="true">
+    <div class="sheet-handle"></div>
+    <div class="sheet-body">
+      <div class="sheet-title">راهنمای سریع ارسال مستقیم با ربات</div>
+
+      <ol style="line-height:1.7">
+        <li>در تلگرام با <b>@BotFather</b> یک ربات بساز و <b>توکن</b> بگیر.</li>
+        <li>ربات را به کانال اضافه کن و <b>ادمین</b>ش کن.</li>
+        <li>Chat ID کانال را پیدا کن (معمولاً با <code>-100</code> شروع می‌شود). می‌توانی از <b>@getidsbot</b> کمک بگیری.</li>
+        <li>به Cloudflare برو → <b>Workers &amp; Pages</b> → Create → Worker جدید بساز.</li>
+        <li>کد زیر را در Worker جایگذاری کن و <b>Deploy</b> بزن:</li>
+      </ol>
+
+      <div style="background:#1f1f1f;border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:10px;white-space:pre-wrap" id="workerCodeBox"></div>
+      <div class="preset-row" style="margin-top:8px;">
+        <button id="copyWorker">کپی کد Worker</button>
+      </div>
+
+      <p class="hint">در تنظیمات Worker → <b>Variables</b> یک Secret با نام <code>TG_BOT_TOKEN</code> بساز و مقدارش را توکن ربات قرار بده.</p>
+
+      <hr style="opacity:.12;border:none;border-top:1px solid rgba(255,255,255,.18);margin:10px 0;">
+
+      <div class="sheet-row" style="grid-template-columns: 180px 1fr;">
+        <label>آدرس Worker نهایی</label>
+        <input id="guideRelayUrl" placeholder="مثال: https://your-worker.workers.dev/send">
+      </div>
+      <div class="sheet-row" style="grid-template-columns: 180px 1fr;">
+        <label>Chat ID کانال</label>
+        <input id="guideChatId" placeholder="-100xxxxxxxxxx">
+      </div>
+      <div class="preset-row">
+        <button id="guideApply">ثبت در تنظیمات</button>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
